@@ -29,11 +29,11 @@ class Lollipop(request: Request[Any], lang: Option[String]) {
    */
   def theme(): String = request.session.get("theme").getOrElse("default")
 
-  def ok(t: play.api.templates.Html): play.api.mvc.SimpleResult = beforeResult(Results.Ok(t))
+  def ok(t: play.twirl.api.Html): Result = beforeResult(Results.Ok(t))
 
-  def ok(t: String): play.api.mvc.SimpleResult = beforeResult(Results.Ok(t))
+  def ok(t: String): Result = beforeResult(Results.Ok(t))
 
-  def beforeResult(res: play.api.mvc.SimpleResult): play.api.mvc.SimpleResult = res.withSession(request.session +("vidaloka", uuid))
+  def beforeResult(res: Result): Result = res.withSession(request.session +("vidaloka", uuid))
 
   /**
    * TODO: tirar isso daqui
